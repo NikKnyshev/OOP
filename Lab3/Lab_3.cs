@@ -1,63 +1,61 @@
 using System;
 
-namespace Lab3
+namespace Lab2
 {
     class A
     {
-        private int a;
+        private int a = 4, b = 6;
 
-        public A (int a)
+        public int C1 => a *= b;
+        public int C2 => a - b;
+		public int C3 => a++;
+
+        public A (int a, int b)
         {
             this.a = a;
+            this.b = b;
         }
         public A() {}
     }
 
     class B : A
     {
-        private float d;
-        private float[] arr;
+        private int d;
 
-        public float[] Arr => arr;
-
-        public float C2
+        public int C3
         {
             get
             {
-                if (d >= 3.33)
-                {
-                    return d;
-                }
-                else
-                {
-                    return 1.4f;
-                }
+                do 
+				{
+				d++;
+				}
+				while(d<10);
+				
+				return d;
             }
         }
     
-        public B (int a, float d) : this(d, a)
+        public B (int a, int b, int d) : base(a, b)
         {
-            arr = new float[a];
-            for (int i = 0; i < arr.Length; i++)
-            {
-                arr[i] = C2 * i;
-            }
+            this.d = d;
         }
-        public B (float d, int a) : base(a)
+        public B (int d)
         {
             this.d = d;
         }
     }
-    
     class Program
     {
         static void Main(string[] args)
         {
-            B obj = new B(4, 9.92f);
-            foreach (var n in obj.Arr) Console.Write(n + "\t");
-            Console.WriteLine();
-            obj = new B(4, 2.2f);
-            foreach (var n in obj.Arr) Console.Write(n + "\t");
+            A obj1 = new A(4, 6);
+            B obj2 = new B(4, 6, 5);
+            B obj3 = new B(5);
+            
+            Console.WriteLine($"obj1:\tC1: {obj1.C1}\n\tC2: {obj1.C2}\n");
+            Console.WriteLine($"obj2:\tC1: {obj2.C1}\n\tC2: {obj2.C2}\n\tC3: {obj2.C3}\n");
+            Console.WriteLine($"obj3:\tC1: {obj3.C1}\n\tC2: {obj3.C2}\n\tC3: {obj3.C3}\n");
         }
     }
 }
