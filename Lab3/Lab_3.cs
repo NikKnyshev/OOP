@@ -1,61 +1,63 @@
 using System;
 
-namespace Lab2
+namespace Lab3
 {
     class A
     {
-        private int a = 4, b = 6;
+        private int a;
 
-        public int C1 => a *= b;
-        public int C2 => a - b;
-		public int C3 => a++;
-
-        public A (int a, int b)
+        public A (int a)
         {
             this.a = a;
-            this.b = b;
         }
         public A() {}
     }
 
     class B : A
     {
-        private int d;
+        private float d;
+        private float[] arr;
 
-        public int C3
+        public float[] Arr => arr;
+
+        public float C2
         {
             get
             {
-                do 
-				{
-				d++;
-				}
-				while(d<10);
-				
-				return d;
+                if (d >= 3.33)
+                {
+                    return d;
+                }
+                else
+                {
+                    return 1.4f;
+                }
             }
         }
     
-        public B (int a, int b, int d) : base(a, b)
+        public B (int a, float d) : this(d, a)
         {
-            this.d = d;
+            arr = new float[a];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = C2 * i;
+            }
         }
-        public B (int d)
+        public B (float d, int a) : base(a)
         {
             this.d = d;
         }
     }
+    
     class Program
     {
         static void Main(string[] args)
         {
-            A obj1 = new A(4, 6);
-            B obj2 = new B(4, 6, 5);
-            B obj3 = new B(5);
-            
-            Console.WriteLine($"obj1:\tC1: {obj1.C1}\n\tC2: {obj1.C2}\n");
-            Console.WriteLine($"obj2:\tC1: {obj2.C1}\n\tC2: {obj2.C2}\n\tC3: {obj2.C3}\n");
-            Console.WriteLine($"obj3:\tC1: {obj3.C1}\n\tC2: {obj3.C2}\n\tC3: {obj3.C3}\n");
+            B obj = new B(4, 9.92f);
+            foreach (var n in obj.Arr) Console.Write(n + "\t");
+            Console.WriteLine();
+            obj = new B(4, 2.2f);
+            foreach (var n in obj.Arr) Console.Write(n + "\t");
         }
     }
 }
