@@ -26,14 +26,13 @@ namespace Lab2
         {
             get
             {
-                if (d >= 5)
-                {
-                    return d;
-                }
-                else
-                {
-                    return 0;
-                }
+                do 
+				{
+				d++;
+				}
+				while(d<10);
+				
+				return d;
             }
         }
     
