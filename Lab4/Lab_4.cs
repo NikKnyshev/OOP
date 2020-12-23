@@ -1,6 +1,6 @@
 using System;
 
-namespace OOP
+namespace Lab4
 {
 class Program
 {
